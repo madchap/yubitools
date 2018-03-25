@@ -8,14 +8,30 @@ export LANG=C.UTF-8
 # lauch pcscd
 pcscd -d >/dev/stdout 2>/dev/stderr
 
-if [[ "$1" == "ykman" ]]; then
-# exec ykman UI
-	ykman-gui
-elif [[ "$1" == "ykman-cli" ]]; then
-# exec ykman commands, cli way.
-	ykman "${@:2}"
-elif [[ "$1" == "yubioath" ]]; then
-	yubioath-desktop
-fi
-
-#exit 0
+case "$1" in
+	"ykman"		)
+		ykman-gui
+		;;
+	"ykman-cli"	)
+		ykman "${@:2}"
+		;;
+	"yubioath"	)
+		yubioath-desktop
+		;;
+	"yubipiv"	)
+		pivman
+		;;
+	"yubipiv-cli"	)
+		yubico-piv-tool "${@:2}"
+		;;
+	"yubiperso"	)
+		yubikey-personalization-gui
+		;;
+	"yubiperso-cli"	)
+		ykpersonalize "${@:2}"
+		;;
+	*		)
+		echo "This command is not in the catalog. Exiting."
+		exit -1
+		;;
+esac

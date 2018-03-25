@@ -32,7 +32,7 @@ RUN apt-get -y install software-properties-common python-software-properties
 RUN apt-add-repository ppa:yubico/stable
 RUN apt-get update \
   && apt-get install -y yubikey-manager-qt yubikey-manager yubioath-desktop \
-  && apt-get install -y gnupg sudo
+  && apt-get install -y yubikey-personalization-gui yubico-piv-tool yubikey-piv-manager yubikey-personalization
 
 # get yubioath          
 #RUN wget https://${IMAGEUSER}s.yubico.com/yubioath-desktop/Releases/yubioath-desktop-${YUBIOATH_VERSION}.tar.gz \
@@ -48,13 +48,13 @@ RUN apt-get update \
 #  && qmake -qt=qt5 && make
 
 # run deps
-RUN apt-get -y install \
-	python3-yubikey-manager \
-	qml-module-io-thp-pyotherside \
-	qml-module-qtquick-controls \
-	qml-module-qtquick-dialogs \
-	qml-module-qt-labs-settings \
-	pcscd
+#RUN apt-get -y install \
+#	python3-yubikey-manager \
+#	qml-module-io-thp-pyotherside \
+#	qml-module-qtquick-controls \
+#	qml-module-qtquick-dialogs \
+#	qml-module-qt-labs-settings \
+#	pcscd
 
 RUN rm -rf /var/lib/apt/lists/*
 
