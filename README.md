@@ -13,19 +13,31 @@ Use at your own peril.
 
 Invoking the container with no argument will show the help.
 
-Arguments:
-* `ykman` --> will run the QT version of Yubikey manager
-* `ykman-cli <ARGS>` --> will run the CLI version of Yubikey manager with your args
-* `yubioath` --> will run yubioath-desktop
-* `yubipiv` --> PIV QT tool
-* `yubipiv-cli <ARGS>` --> PIV CLI 
-* `yubiperso` --> Personalization UI
-* `yubiperso-cli <ARGS>` -->  Personalization CLI
+Usage:
+```
+docker run --name yubitools --rm \
+	--privileged \
+	-e DISPLAY=$DISPLAY \
+	-v /tmp/.X11-unix:/tmp/.X11-unix \
+	-v /dev/bus/usb:/dev/bus/usb \
+	madchap/yubitools:latest <COMMAND>
 
+	where <COMMAND> can be:
+	- ykman		: will launch the yubikey manager UI.
+	- ykman-cli 	: will launch the yubikey manager CLI. You want to pass your program parameters too.
+	- yubioath 	: will launch the yubioath desktop UI.
+	- yubipiv	: will launch the yubikey PIV manager UI.
+	- yubipiv-cli	: will launch the yubikey PIV manager CLI. You want to pass your program parameters too.
+	- yubiperso	: will launch the yubikey personalization UI.
+	- yubiperso-cli	: will launch the yubikey personalization CLI. You want to pass your program parameters too.
+```
+
+Example:
 ```
 docker run --name yubitools --rm --privileged -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/bus/usb:/dev/bus/usb madchap/yubioath:0.1 ykman
 ```
 
+### Aliases
 You could of course define some alias, to make it easier, such as the following for `yubioath-desktop`:
 
 `alias yubioath='docker run --name yubitools --rm --privileged -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v /dev/bus/usb:/dev/bus/usb madchap/yubioath:0.1 yubioath'`
