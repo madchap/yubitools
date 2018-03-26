@@ -32,7 +32,8 @@ RUN apt-get -y install software-properties-common python-software-properties
 RUN apt-add-repository ppa:yubico/stable
 RUN apt-get update \
   && apt-get install -y yubikey-manager-qt yubikey-manager yubioath-desktop \
-  && apt-get install -y yubikey-personalization-gui yubico-piv-tool yubikey-piv-manager yubikey-personalization
+  && apt-get install -y yubikey-personalization-gui yubico-piv-tool yubikey-piv-manager yubikey-personalization \
+  && apt-get install -y man
 
 # get yubioath          
 #RUN wget https://${IMAGEUSER}s.yubico.com/yubioath-desktop/Releases/yubioath-desktop-${YUBIOATH_VERSION}.tar.gz \
